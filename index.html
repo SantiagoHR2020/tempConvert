@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script>
-        /*
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            /*
 Albany|22.2*Caribou|9.5*Columbia|44.6*Denver|29.2*Indianapolis|26.5*Montgomery|46.6*San Diego|57.8*Tulsa|36.4*Tampa|61.3*Billings|24.0
 Cold - less than 20 
 Moderate - Between 20 and 30
@@ -27,71 +27,60 @@ convert temp
 loop the array and check the temp and display city and temp
 
 */
-        var input = "Albany|22.2*Caribou|9.5*Columbia|44.6*Denver|29.2*Indianapolis|26.5*Montgomery|46.6*San Diego|57.8*Tulsa|36.4*Tampa|61.3*Billings|24.0";
+            var input =
+                'Albany|22.2*Caribou|9.5*Columbia|44.6*Denver|29.2*Indianapolis|26.5*Montgomery|46.6*San Diego|57.8*Tulsa|36.4*Tampa|61.3*Billings|24.0';
 
-        var cityArr = [];
-        var coldArr = [];
-        var moderateArr =[];
-        var hotArr = [];
-        cityArr = input.split("*");
-        // console.log(cityArr)
+            var cityArr = [];
+            var coldArr = [];
+            var moderateArr = [];
+            var hotArr = [];
+            cityArr = input.split('*');
+            // console.log(cityArr)
 
-      
+            function convert(input) {
+                var result = (input - 32) * (5 / 9);
 
-        function convert (input){
-            var result = (input-32)*(5/9)
+                if (input < 20.0) {
+                    coldArr.push([cityTempArr[0], input]);
 
-            
-            if(input < 20.0){   
-            coldArr.push([cityTempArr[0], input])
+                    // console.log('COLD ' + coldArr);
+                } else if (input > 20.0 && input < 30) {
+                    moderateArr.push([cityTempArr[0], input]);
 
-            // console.log("COLD " + coldArr)
-             
-             }else 
-             if(input > 20.0 && input < 30){   
-            moderateArr.push([cityTempArr[0], input])
+                    // console.log('MODERATE ' + moderateArr);
+                } else if (input > input < 30) {
+                    hotArr.push([cityTempArr[0], input]);
 
-            // console.log("MODERATE " + moderateArr)
-             }else 
-             if(input > input < 30){   
-            hotArr.push([cityTempArr[0], input])
+                    // console.log('HOT ' + hotArr);
+                }
+            }
 
-            // console.log("HOT " + hotArr)
-             }
-             
-        }
-        
-        
-        for(var i=0; i< cityArr.length; i++){
-            cityTempArr = cityArr[i].split("|");
-            // console.log(cityTempArr);
+            for (var i = 0; i < cityArr.length; i++) {
+                cityTempArr = cityArr[i].split('|');
+                // console.log(cityTempArr);
 
-            convertR = convert(cityTempArr[1]);
-            // console.log(convertArr)
+                convertR = convert(cityTempArr[1]);
+                // console.log(convertArr)
 
-        }
+                displayArr();
+            }
 
-        function displayCities()
-{
-    console.log('Cold: ')
-    for(let i = 0; i < coldArr.length; i++)
-    {
-        console.log(coldArr[i][0] + " " + coldArr[i][1]);
-    }
+            function displayArr() {
+                console.log('Cold: ');
+                for (let i = 0; i < coldArr.length; i++) {
+                    console.log(coldArr[i][0] + ' ' + coldArr[i][1]);
+                }
 
-    console.log('Moderate: ')
-    for(let i = 0; i < moderateArr.length; i++)
-    {
-        console.log(moderateArr[i][0] + " " + coldArr[i][1]);
-    }
+                console.log('Moderate: ');
+                for (let i = 0; i < moderateArr.length; i++) {
+                    console.log(moderateArr[i][0] + ' ' + moderateArr[i][1]);
+                }
 
-    console.log('Hot: ')
-    for(let i = 0; i < hotArr.length; i++)
-    {
-        console.log(hotArr[i][0] + " " + coldArr[i][1]);
-    }
-}
-
-    </script>
-</body>
+                console.log('Hot: ');
+                for (let i = 0; i < hotArr.length; i++) {
+                    console.log(hotArr[i][0] + ' ' + hotArr[i][1]);
+                }
+            }
+        </script>
+    </body>
 </html>
